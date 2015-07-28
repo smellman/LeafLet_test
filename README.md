@@ -1,2 +1,2 @@
-# hokkaido_opendata
-北海道のオープンデータサンプルサイト
+# leafletのコードテスト
+leafletのコードのテスト
