@@ -67,7 +67,7 @@ map.addLayer(markers);
 //オーバーレイ選択画面
 var Map_Over = {
 	"山": Map_Marker,
-	"福祉施設": Map_fukushi,
+	"福祉施設": markers,
 	};
 
 
