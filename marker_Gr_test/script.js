@@ -47,7 +47,7 @@ var comment = '羊蹄山';
 document.write("<script type='text/javascript' src='plugin/markercluster/dist/leaflet.markercluster-src.js'><\/script>");
 
 //マーカーをグループ化する
-var markers = L.markerClusterGroup();
+var markers = L.markerClusterGroup({ spiderfyOnMaxZoom: false, showCoverageOnHover: true, zoomToBoundsOnClick: false });
 
 	//Geojsonファイルを追加
 	//説明：Geojsonの一番最初の行に「var 変数 = 」と一番最後の行に「;」を追加しておく
