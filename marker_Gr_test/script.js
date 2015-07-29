@@ -47,7 +47,13 @@ var comment = '羊蹄山';
 document.write("<script type='text/javascript' src='plugin/markercluster/dist/leaflet.markercluster-src.js'><\/script>");
 
 //マーカーをグループ化する
-var markers = L.markerClusterGroup({ spiderfyOnMaxZoom: true, showCoverageOnHover: true, zoomToBoundsOnClick: true });
+var markers = L.markerClusterGroup({ disableClusteringAtZoom: 15 });
+//Option　L.markerClusterGroup({ disableClusteringAtZoom: 15, maxClusterRadius: 200, singleMarkerMode:true });
+//disableClusteringAtZoom: 設定したズームレベルではクラスタ化しない
+//maxClusterRadius:　クラスタ化する範囲を数字で指定。デフォルトは80
+//singleMarkerMode: trueにすると、1つのマーカーでもクラスタアイコンで表示する
+
+
 
 	//Geojsonファイルを追加
 	//説明：Geojsonの一番最初の行に「var 変数 = 」と一番最後の行に「;」を追加しておく
