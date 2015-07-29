@@ -33,6 +33,7 @@ var yamaIcon = L.icon({
 //マーカーの表示
 var Map_Marker = L.marker([42.827639, 140.811768], {
 	icon: yamaIcon })  //アイコンを設定
+	.bindLabel('羊蹄山', { noHide: true }) //ポイントにラベルを表示する
 	.addTo(map);
 
 
@@ -59,8 +60,10 @@ var markers = L.markerClusterGroup({ disableClusteringAtZoom: 15 });
 		fukushidata,              //GeoJsonファイルに追加した変数名を指定
 		{
     			onEachFeature: function(feature, layer){
-        		layer.bindPopup('<b>名称：</b>' + feature.properties.名称 + '<br><b>市区町村：</b>' + feature.properties.市区町村 + '<br><b>所在地：</b>' + feature.properties.所在地);
-    			}
+			//ポイントにラベルを表示する
+    			layer.bindLabel(feature.properties.名称, { noHide: true });
+    			//layer.bindLabel('<b>名称：</b>' + feature.properties.名称);　//noHideオプションを指定しない場合は、マウスオーバーでラベルを表示
+			}
 		});
 
 markers.addLayer(Map_fukushi);
