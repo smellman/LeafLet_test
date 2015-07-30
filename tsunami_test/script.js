@@ -100,21 +100,31 @@ var geojson;
 		});
 	}
 
-geojson = L.geoJson(tsunamiData, {
-	style: style,
-	onEachFeature: onEachFeature
-}).addTo(map);
+	$.getJSON("./data/hiroo_tsunami.geojson", function(data) {
+		for (var i = 0; i < data.features.length; i++) {
+			delete data.features[i].properties["原点X"];
+			delete data.features[i].properties["原点Y"];
+			delete data.features[i].properties["H24wgm_ka"];
+			delete data.features[i].properties["H24wgm_kn"];
+			delete data.features[i].properties["meshsize"];
+		}
+		geojson = L.geoJson(data, {
+			style: style,
+			onEachFeature: onEachFeature
+		}).addTo(map);
 
-//オーバーレイ選択画面
-var Map_Over = {
-	"津波浸水範囲": geojson,
-	};
+		//オーバーレイ選択画面
+		var Map_Over = {
+			"津波浸水範囲": geojson,
+			};
 
-// レイヤコントロールの表示
-L.control.layers(Map_BaseLayer, //地図のレイヤ切り替え
-	Map_Over, {          //オーバーレイを表示
-	collapsed: false })  //「collapsed」は、コントロールを出したまま（false)にするか、アイコンにしまうか(true)選択
-	.addTo(map);
+		// レイヤコントロールの表示
+		L.control.layers(Map_BaseLayer, //地図のレイヤ切り替え
+			Map_Over, {          //オーバーレイを表示
+			collapsed: false })  //「collapsed」は、コントロールを出したまま（false)にするか、アイコンにしまうか(true)選択
+			.addTo(map);
+
+	});
 
 //凡例を作成
 var legend = L.control({position: 'bottomright'});
@@ -138,5 +148,3 @@ legend.onAdd = function (map) {
 };
 
 legend.addTo(map);
-
-
